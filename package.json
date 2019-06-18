@@ -24,7 +24,7 @@
     "url": "git@github.com:gsuntres/qatonic.git"
   },
   "dependencies": {
-    "@qatonic/plugin-http": "0.0.7",
+    "@qatonic/plugin-http": "0.0.x",
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
   }
