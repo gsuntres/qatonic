@@ -3,6 +3,11 @@ require('..')
 
 qa.loadFiles()
 
-qa.mocha.run(function(failures) {
-  process.exitCode = failures ? 1 : 0;  // exit with non-zero status if there were failures
-});
+try {
+  qa.mocha.run(function(failures) {
+    process.exitCode = failures ? 1 : 0;  // exit with non-zero status if there were failures
+  });
+} catch(err) {
+  console.log(err)
+  process.exitCode = 1
+}
