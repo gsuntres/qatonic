@@ -32,6 +32,9 @@ class QaTonic {
     }
 
     if(typeof obj === 'undefined') {
+      if(typeof this._fixtures[key] === 'undefined') {
+        throw new Error(`Fixture \`${key}\` not found!`)
+      }
       return this._fixtures[key]
     } else if(typeof obj === 'null' && typeof this._fixtures[key] !== 'undefined') {
       delete this._fixtures[key]
@@ -39,6 +42,17 @@ class QaTonic {
       this._fixtures[key] = Object.assign({}, obj)
       Object.freeze(this._fixtures[key])
     }
+  }
+
+  merge() {
+    const objMergable = []
+    for(let i = 0; i !== arguments.length; i++) {
+      if(typeof arguments[i] === 'object') {
+        objMergable.push(arguments[i])
+      }
+    }
+
+    return Object.assign.apply(null, [{}].concat(objMergable))
   }
 
   loadFiles() {
