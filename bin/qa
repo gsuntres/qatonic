@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 require('..')
 
+qa.loadSupport()
+
 qa.loadFiles()
 
 try {
