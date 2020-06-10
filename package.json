@@ -27,7 +27,7 @@
   "dependencies": {
     "@qatonic/plugin-http": "0.0.8",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^8.0.0"
   },
   "devDependencies": {
     "eslint": "^6.0.1"
