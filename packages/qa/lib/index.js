@@ -1,5 +1,5 @@
 require('chai/register-assert')
-const QaTonic = require('./lib/qa-tonic')
+const QaTonic = require('./qa-tonic')
 global.http = require('@qatonic/plugin-http')
 
 const qa = new QaTonic()
