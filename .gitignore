@@ -1,15 +1,6 @@
-.sass-cache
-bower_components
 node_modules
-tmp
-public
-.env*
 
-/assets/locales/*.json
-/assets/locales/*.mo
 # mac
 .DS_Store
-dump.rdb
 
-npm-debug.log
-boxfe*.zip
+*-debug.log
