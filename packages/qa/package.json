@@ -1,6 +1,6 @@
 {
   "name": "@qatonic/qa",
-  "version": "1.0.1-beta.0",
+  "version": "1.1.0",
   "description": "> TODO: description",
   "author": "George Suntres <gsuntres@gmail.com>",
   "homepage": "",
@@ -24,7 +24,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@qatonic/plugin-http": "^1.0.1-beta.0",
+    "@qatonic/plugin-http": "^1.1.0",
     "chai": "^4.2.0",
     "mocha": "^8.2.1"
   }
