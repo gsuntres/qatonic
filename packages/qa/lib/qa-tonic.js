@@ -58,13 +58,14 @@ class QaTonic {
     let filehandle
     try {
       filehandle = await open(integrationDir, 'r');
-      // load the rest
-      fs.readdirSync(integrationDir)
-        .forEach(file => this._mocha.addFile(path.join(integrationDir, file)))
+      for(const file of fs.readdirSync(integrationDir)) {
+        this._mocha.addFile(path.join(integrationDir, file))
+      }
     } finally {
       await filehandle?.close();
     }
     
+    return Promise.resolve({})
   }
 
   async loadSupport() {
@@ -78,7 +79,7 @@ class QaTonic {
       await filehandle?.close();
     }
 
-    
+    return Promise.resolve({})
   }
 
   fixture(name, varName) {

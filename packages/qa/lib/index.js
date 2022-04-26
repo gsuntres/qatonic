@@ -1,4 +1,4 @@
-require('chai/register-assert')
+require('chai/register-assert.js')
 const QaTonic = require('./qa-tonic')
 global.http = require('@qatonic/plugin-http')
 
