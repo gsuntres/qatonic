@@ -1,10 +1,8 @@
 {
   "name": "@qatonic/plugin-http",
   "version": "1.1.0",
-  "description": "> TODO: description",
   "author": "George Suntres <gsuntres@gmail.com>",
-  "homepage": "",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib"
@@ -15,11 +13,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "dependencies": {
-    "set-cookie-parser": "^2.4.7",
-    "superagent": "^6.1.0"
+    "set-cookie-parser": "^2.4.8",
+    "superagent": "^7.1.1"
   }
 }

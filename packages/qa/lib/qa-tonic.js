@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const Mocha = require('mocha')
 const Context = require('./context')
+const { open } = fs.promises
 
 class QaTonic {
 
@@ -51,17 +52,33 @@ class QaTonic {
     return Object.assign.apply(null, [{}].concat(objMergable))
   }
 
-  loadFiles() {
+  async loadFiles() {
     const integrationDir = path.resolve(path.join(process.cwd(), 'integration'))
 
-    // load the rest
-    fs.readdirSync(integrationDir)
-      .forEach(file => this._mocha.addFile(path.join(integrationDir, file)))
+    let filehandle
+    try {
+      filehandle = await open(integrationDir, 'r');
+      // load the rest
+      fs.readdirSync(integrationDir)
+        .forEach(file => this._mocha.addFile(path.join(integrationDir, file)))
+    } finally {
+      await filehandle?.close();
+    }
+    
   }
 
-  loadSupport() {
+  async loadSupport() {
     const supportDir = path.join(process.cwd(), 'support')
-    require(supportDir)
+
+    let filehandle
+    try {
+      filehandle = await open(supportDir, 'r');
+      require(supportDir)
+    } finally {
+      await filehandle?.close();
+    }
+
+    
   }
 
   fixture(name, varName) {

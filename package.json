@@ -1,17 +1,22 @@
 {
   "name": "@qatonic/qatonic",
-  "version": "1.0.0-beta",
+  "version": "1.1.0",
   "description": "Boost your code's quality",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "George Suntres <gsuntres@gmail.com>",
   "license": "MIT",
+  "private": true,
   "devDependencies": {
-    "chai": "^4.3.4",
+    "chai": "^4.3.6",
     "lerna": "^4.0.0",
-    "mock-fs": "^5.1.1",
+    "mock-fs": "^5.1.2",
     "mocka": "0.0.1",
-    "sinon": "^11.1.2"
-  }
+    "sinon": "^13.0.2"
+  },
+  "engines": {
+    "node": ">=16.13.2",
+    "npm": "~8.1.2"
+  },
+  "workspaces": [
+    "./packages/*"
+  ]
 }
