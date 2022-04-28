@@ -10,7 +10,8 @@ class QaTonic {
     this._mocha = new Mocha({
       timeout: 60000,
       bail: true,
-      slow: 1000
+      slow: 1000,
+      
     })
     this._context = new Context()
     this._fixtures = {}
