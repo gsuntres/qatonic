@@ -2,7 +2,10 @@ const path = require('path')
 const fs = require('fs')
 const Mocha = require('mocha')
 const Context = require('./context')
-const { open } = fs.promises
+const {
+  readFile,
+  open
+} = fs.promises
 
 class QaTonic {
 
@@ -11,14 +14,18 @@ class QaTonic {
       timeout: 60000,
       bail: true,
       slow: 1000,
-      
+
     })
+
     this._context = new Context()
     this._fixtures = {}
     this._env = {}
+  }
+
+  async init() {
     try {
-      this._env = require(path.join(process.cwd(), 'qa.env.json'))
-    } catch(err) { } // eslint-disable-line no-empty
+      this._env = JSON.parse(await readFile(path.join(process.cwd(), 'qa.env.json'), 'utf8'))
+    } catch (err) { } // eslint-disable-line no-empty
 
     this._FIXTURE_DIR = path.resolve(path.join(process.cwd(), 'fixtures'))
   }
@@ -36,7 +43,7 @@ class QaTonic {
   }
 
   register(data) {
-    for(let key in data) {
+    for (let key in data) {
       this._context.update(key, data[key])
     }
   }
@@ -44,8 +51,8 @@ class QaTonic {
   // utility func to merge objects properly.
   merge() {
     const objMergable = []
-    for(let i = 0; i !== arguments.length; i++) {
-      if(typeof arguments[i] === 'object') {
+    for (let i = 0; i !== arguments.length; i++) {
+      if (typeof arguments[i] === 'object') {
         objMergable.push(arguments[i])
       }
     }
@@ -59,25 +66,25 @@ class QaTonic {
     let filehandle
     try {
       filehandle = await open(integrationDir, 'r');
-      for(const file of fs.readdirSync(integrationDir)) {
+      for (const file of fs.readdirSync(integrationDir)) {
         this._mocha.addFile(path.join(integrationDir, file))
       }
     } finally {
       await filehandle?.close();
     }
-    
+
     return Promise.resolve({})
   }
 
   async loadSupport() {
     const supportDir = path.join(process.cwd(), 'support')
 
-    let filehandle
+    let fileHandle
     try {
-      filehandle = await open(supportDir, 'r');
+      fileHandle = await open(supportDir, 'r');
       require(supportDir)
     } finally {
-      await filehandle?.close();
+      await fileHandle?.close();
     }
 
     return Promise.resolve({})
@@ -85,14 +92,14 @@ class QaTonic {
 
   fixture(name, varName) {
     let fix
-    if(this._fixtures[name]) {
+    if (this._fixtures[name]) {
       fix = this._fixtures[name]
     } else {
       fix = require(`${this._FIXTURE_DIR}/${name}.json`)
       this._fixtures[name] = fix
     }
 
-    if(varName) {
+    if (varName) {
       const obj = {}
       obj[varName] = fix
       this.register(obj)
@@ -109,7 +116,7 @@ class QaTonic {
 
 QaTonic.Commands = {
   add(name, f) {
-    if(QaTonic.prototype[name]) {
+    if (QaTonic.prototype[name]) {
       throw new Error(`Cannot add ${name}`)
     }
 
