@@ -8,6 +8,7 @@ chai.use(chaiAsPromised)
 const QaTonic = require('./qa-tonic')
 
 global.http = require('@qatonic/plugin-http')
+global._ = require('lodash')
 
 const qa = new QaTonic()
 qa.init()

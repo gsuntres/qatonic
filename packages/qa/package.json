@@ -1,6 +1,6 @@
 {
   "name": "@qatonic/qa",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "author": "George Suntres <gsuntres@gmail.com>",
   "license": "MIT",
   "main": "lib/qa.js",
